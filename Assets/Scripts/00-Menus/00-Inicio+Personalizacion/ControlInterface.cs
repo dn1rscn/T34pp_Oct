@@ -130,11 +130,11 @@ public class ControlInterface : MonoBehaviour
 	}
 	public void Facebook ()
 	{
-		Application.OpenURL ("https://www.facebook.com/PrometeoStudios-949884905102365");
+		Application.OpenURL ("https://www.facebook.com/Ikki-Studios-1854126904821934");
 	}
 	public void twitter ()
 	{
-		Application.OpenURL ("https://twitter.com/PrometeoStudios");
+		Application.OpenURL ("https://twitter.com/Studiosikki");
 	}
 
 }

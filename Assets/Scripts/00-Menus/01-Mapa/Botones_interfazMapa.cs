@@ -20,29 +20,38 @@ public class Botones_interfazMapa : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
+		//SI EXISTE, ACCEDEMOS AL SCRIPT DE DATOS GLOBALES
+		if(GameObject.Find("ControlDatosGlobales")){
+			CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
+
+			if (CDG_Mundo3D.islaBosque == true) 
+			{
+				Fondo_IBosque.SetActive (true);
+				Fondo_IFantasma.SetActive (false);
+				Fondo_IRobot.SetActive (false);
+			}
+			if (CDG_Mundo3D.islaMec == true) 
+			{
+				Fondo_IBosque.SetActive (false);
+				Fondo_IFantasma.SetActive (true);
+				Fondo_IRobot.SetActive (false);
+			}
+			if (CDG_Mundo3D.islaFant == true) 
+			{
+				Fondo_IBosque.SetActive (false);
+				Fondo_IFantasma.SetActive (false);
+				Fondo_IRobot.SetActive (true);
+			}
+		}
 
 		seleccion = false;
-		Loading.SetActive(false);
 
-		if (CDG_Mundo3D.islaBosque == true) 
-		{
-			Fondo_IBosque.SetActive (true);
-			Fondo_IFantasma.SetActive (false);
-			Fondo_IRobot.SetActive (false);
+		//Ajustamos Loading, solo si se ha declarado
+		if(Loading){
+			Loading.SetActive(false);
 		}
-		if (CDG_Mundo3D.islaMec == true) 
-		{
-			Fondo_IBosque.SetActive (false);
-			Fondo_IFantasma.SetActive (true);
-			Fondo_IRobot.SetActive (false);
-		}
-		if (CDG_Mundo3D.islaFant == true) 
-		{
-			Fondo_IBosque.SetActive (false);
-			Fondo_IFantasma.SetActive (false);
-			Fondo_IRobot.SetActive (true);
-		}
+
+
 	}
 	
 	// Update is called once per frame

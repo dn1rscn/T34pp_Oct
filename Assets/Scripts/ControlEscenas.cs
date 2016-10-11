@@ -14,9 +14,10 @@ public class ControlEscenas : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		//ACCEDEMOS AL SCRIPT DE DATOS GLOBALES
-		CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
-
+		//SI EXISTE, ACCEDEMOS AL SCRIPT DE DATOS GLOBALES
+		if(GameObject.Find("ControlDatosGlobales")){
+			CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
+		}
 
 		if(GameObject.Find("Panel_Canvas"))
 		{
