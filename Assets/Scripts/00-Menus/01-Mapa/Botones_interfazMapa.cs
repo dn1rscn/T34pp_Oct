@@ -20,8 +20,16 @@ public class Botones_interfazMapa : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		if (GameObject.Find ("controlMapa")) 
+		{
+			Fondo_IBosque.SetActive (false);
+			Fondo_IFantasma.SetActive (false);
+			Fondo_IRobot.SetActive (false);
+		}
+
 		//SI EXISTE, ACCEDEMOS AL SCRIPT DE DATOS GLOBALES
-		if(GameObject.Find("ControlDatosGlobales")){
+		if(GameObject.Find("ControlDatosGlobales"))
+		{
 			CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
 
 			if (CDG_Mundo3D.islaBosque == true) 
@@ -42,12 +50,14 @@ public class Botones_interfazMapa : MonoBehaviour
 				Fondo_IFantasma.SetActive (false);
 				Fondo_IRobot.SetActive (true);
 			}
+
 		}
 
 		seleccion = false;
 
 		//Ajustamos Loading, solo si se ha declarado
-		if(Loading){
+		if(Loading)
+		{
 			Loading.SetActive(false);
 		}
 
@@ -65,7 +75,7 @@ public class Botones_interfazMapa : MonoBehaviour
 		CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
 		if (CDG_Mundo3D.islaBosque == true) 
 		{
-			Application.LoadLevel ("03_1-Mundo3D_IslaDino");
+			Application.LoadLevel ("Isla_bosque");
 		}
 		if (CDG_Mundo3D.islaMec == true) 
 		{
@@ -78,7 +88,7 @@ public class Botones_interfazMapa : MonoBehaviour
 	}
 	public void Isla_Bosque()
 	{
-		if (seleccion == false) 
+		if (seleccion == false ) 
 		{
 			print (Tiempo);
 			Fondo_IBosque.SetActive (true);
@@ -93,7 +103,7 @@ public class Botones_interfazMapa : MonoBehaviour
 	}
 	public void Isla_FAntasma()
 	{
-		if (seleccion == false) 
+		if (seleccion == false && CDG_Mundo3D.IslaFantasma_Desbloqueada==true) 
 		{
 			print (Tiempo);
 			Fondo_IBosque.SetActive (false);
@@ -109,7 +119,7 @@ public class Botones_interfazMapa : MonoBehaviour
 	}
 	public void Isla_Robot()
 	{
-		if (seleccion == false) 
+		if (seleccion == false && CDG_Mundo3D.IslaMec_Desbloqueada==true) 
 		{
 			print (Tiempo);
 			Fondo_IBosque.SetActive (false);
@@ -127,6 +137,8 @@ public class Botones_interfazMapa : MonoBehaviour
 	void ToBosque()
 	{
 		Debug.Log ("A Isla Bosque");
+		CDG_Mundo3D.islaBosque = true;
+		Application.LoadLevel ("Isla_bosque");
 	}
 	void ToFantasma()
 	{

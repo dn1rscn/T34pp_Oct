@@ -7,8 +7,13 @@ public class ControlDatosGlobales_Mundo3D: MonoBehaviour {
 		
 	public static ControlDatosGlobales_Mundo3D cont;
 
+	public bool IslaMec_Desbloqueada;
+	public bool IslaFantasma_Desbloqueada;
+
 	public int AvatarSeleccionado = 0;
 	public int MascotaSeleccionada = 0;
+
+	public bool IKKI=true;
 
 	public bool islaBosque=false;
 	public bool islaMec=false;

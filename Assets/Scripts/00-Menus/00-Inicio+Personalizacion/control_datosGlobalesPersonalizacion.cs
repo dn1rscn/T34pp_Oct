@@ -19,6 +19,7 @@ public class control_datosGlobalesPersonalizacion : MonoBehaviour
 	public bool piernas=false;
 	//public bool mascotas=false;
 
+	public bool nuevoJuego=true;
 	public bool inicio=true;
 	
 	//public Texture[] Atexture_Piel;

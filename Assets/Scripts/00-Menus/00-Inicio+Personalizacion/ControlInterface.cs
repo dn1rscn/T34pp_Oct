@@ -4,6 +4,10 @@ using System.Collections;
 public class ControlInterface : MonoBehaviour 
 {
 	control_datosGlobalesPersonalizacion cdgP;
+	ControlDatosGlobales_Mundo3D CDG_Mundo3D;
+
+	public GameObject BotonInicio;
+	public GameObject BotonJuego;
 
 	public GameObject PersonajeInicio;
 	public GameObject Personajejuego;
@@ -22,28 +26,66 @@ public class ControlInterface : MonoBehaviour
 	void Start () 
 	{
 		cdgP = GameObject.Find ("datosGlobalesPersonalizacion").GetComponent<control_datosGlobalesPersonalizacion> ();
+		CDG_Mundo3D = GameObject.Find ("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D> ();
 
-		if (cdgP.inicio == true) 
+		if (CDG_Mundo3D.IKKI == true) 
 		{
-			PersonajeInicio.SetActive(true);
-			MascotaInicio.SetActive(true);
-			CamInicio.SetActive(true);
+			if (cdgP.nuevoJuego == true) 
+			{
+				BotonInicio.SetActive (true);
+				PersonajeInicio.SetActive (true);
+				MascotaInicio.SetActive (true);
+				CamInicio.SetActive (true);
+				
+				BotonJuego.SetActive (false);
+				Personajejuego.SetActive (false);
+				Mascotajuego.SetActive (false);
+				CamJuego.SetActive (false);
 
-			Personajejuego.SetActive(false);
-			Mascotajuego.SetActive(false);
-			CamJuego.SetActive(false);
+				cdgP.inicio=true;
+			} 
+			else if (cdgP.nuevoJuego == false) 
+			{
+				BotonInicio.SetActive (false);
+				CamInicio.SetActive (true);
+				
+				BotonJuego.SetActive (true);
+				CamJuego.SetActive (false);
+			}
 
+			CDG_Mundo3D.IKKI=false;
 		} 
-		else if(cdgP.inicio == false)
+		else if (CDG_Mundo3D.IKKI == false) 
 		{
-			PersonajeInicio.SetActive(false);
-			MascotaInicio.SetActive(false);
-			CamInicio.SetActive(false);
-			
-			Personajejuego.SetActive(true);
-			Mascotajuego.SetActive(true);
-			CamJuego.SetActive(true);
+
+			if (cdgP.inicio == true)
+			{
+				BotonInicio.SetActive (true);
+				PersonajeInicio.SetActive (true);
+				MascotaInicio.SetActive (true);
+				CamInicio.SetActive (true);
+
+				BotonJuego.SetActive (false);
+				Personajejuego.SetActive (false);
+				Mascotajuego.SetActive (false);
+				CamJuego.SetActive (false);
+
+			} 
+			else if (cdgP.inicio == false) 
+			{
+				BotonInicio.SetActive (false);
+				PersonajeInicio.SetActive (false);
+				MascotaInicio.SetActive (false);
+				CamInicio.SetActive (false);
+
+				BotonJuego.SetActive (true);
+				Personajejuego.SetActive (true);
+				Mascotajuego.SetActive (true);
+				CamJuego.SetActive (true);
+			}
 		}
+
+
 		switch (cdgP.mascota)
 		{
 		case 0:
@@ -75,6 +117,19 @@ public class ControlInterface : MonoBehaviour
 	public void Mapa()
 	{
 		Application.LoadLevel ("Mapa");
+	}
+	public void Volver_mundo ()
+	{
+		CDG_Mundo3D = GameObject.Find ("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D> ();
+		if (CDG_Mundo3D.islaBosque == true) {
+			Application.LoadLevel ("Isla_bosque");
+		}
+		if (CDG_Mundo3D.islaMec == true) {
+			Application.LoadLevel ("04_1-Mundo3D_IslaRobot");
+		}
+		if (CDG_Mundo3D.islaFant == true) {
+			Application.LoadLevel ("05_1-Mundo3D_IslaFantasma");
+		}
 	}
 	public void RA_personalizacion()
 	{
