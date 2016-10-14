@@ -9,7 +9,7 @@ public class reproducirSonido : MonoBehaviour
 	ControlSonidos CS;
 	RespuestaSonidos RS;
 
-	public GameObject MaquinaDiscos;
+	//public GameObject MaquinaDiscos;
 
 
 	/*public AudioSource Olla;
@@ -58,7 +58,8 @@ public class reproducirSonido : MonoBehaviour
 	{
 		RS = GameObject.Find ("control respuesta").GetComponent<RespuestaSonidos> ();
 
-		if (RS.respuesta == true) {
+		if (RS.respuesta == true) 
+		{
 			RS.respuesta = false;
 
 			//MaquinaDiscos.GetComponent<Animation> ().Play ("play");
