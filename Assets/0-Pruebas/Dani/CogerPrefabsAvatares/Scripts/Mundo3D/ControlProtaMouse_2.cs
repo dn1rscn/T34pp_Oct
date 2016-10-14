@@ -23,7 +23,7 @@ public class ControlProtaMouse_2 : MonoBehaviour {
 
 		gObj_haloTarget = GameObject.Find ("HaloTarget");
 
-		print ("HaloDetectado");
+		//print ("HaloDetectado");
 
 		animatorHaloTarget=gObj_haloTarget.GetComponent<Animator>();
 
@@ -51,7 +51,7 @@ public class ControlProtaMouse_2 : MonoBehaviour {
 
 		if(Physics.Raycast(rayoPantalla,out impacto))
 		{
-			print ("rayoDetectado");
+			//print ("rayoDetectado");
 
 			//Si queremos que el prota mire siempre al puntero
 			//agente.transform.LookAt(impacto.point);

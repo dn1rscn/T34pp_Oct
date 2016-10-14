@@ -22,12 +22,23 @@ public class Control_audio_trigger : MonoBehaviour
 	void OnTriggerEnter(Collider coli)
 
 	{
+		GetComponent<AudioSource> ().Stop ();
+		GetComponent<AudioSource> ().volume=0.35f;
 		GetComponent<AudioSource> ().Play ();
 	}
 
 	void OnTriggerExit(Collider coli)
 
 	{
+		GetComponent<AudioSource> ().volume=0.15f;
+		Invoke("pararSonido",1);
+
+	}
+
+	void pararSonido()
+	{
 		GetComponent<AudioSource> ().Stop ();
+
+
 	}
 }

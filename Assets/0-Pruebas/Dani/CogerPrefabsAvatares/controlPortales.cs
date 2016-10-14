@@ -4,6 +4,9 @@ using System.Collections;
 public class controlPortales : MonoBehaviour {
 
 	Animator animator_PanelCanvas;
+	Animator animator_botonesPortal;
+
+	string destinoPortal;
 
 	ControlDatosGlobales_Mundo3D CDG_Mundo3D;
 
@@ -11,103 +14,78 @@ public class controlPortales : MonoBehaviour {
 	void Start ()
 	{
 		//ACCEDEMOS AL SCRIPT DE DATOS GLOBALES
-		CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
+		//CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
 
-		animator_PanelCanvas = GameObject.Find ("Panel_Canvas").GetComponent<Animator> ();
+		animator_PanelCanvas = GameObject.Find ("CanvasPortal_Verde").GetComponent<Animator> ();
+		animator_botonesPortal = GameObject.Find("botonesPortal").GetComponent<Animator>();
 	}
 	
 	void OnTriggerEnter(Collider coli)
 	{
-		print ("trigger");
-		print ("Colision con"+coli.gameObject.name);
-
-		if (coli.gameObject.name == "Prota_TEAPlay")
+		if (coli.gameObject.tag == "Portal")
 		{
-			print ("Colision con"+coli.gameObject.name);
-			if(gameObject.name=="Pictogramas_1")
-			{
-				CDG_Mundo3D.posicionPersonaje = 2;
+			//Ejecutamos la animacion del canvas al entrar en algun portal
+ 			animator_PanelCanvas.Play("CanvasPortal_animIntro");
+			animator_botonesPortal.Play("IntroBotonesPortales");
 
-				print("cargarPictogramas1");
-				animator_PanelCanvas.Play("pasarABlanco");
-				Invoke("cargarPictogramas1",100*Time.deltaTime);
-			}
-			else if(gameObject.name=="Pictogramas_2")
+			print ("Colision con: "+coli.gameObject.name);
+			if(coli.gameObject.name=="trigger_EjercicioPictogramas")
 			{
-				CDG_Mundo3D.posicionPersonaje = 2;
+				//CDG_Mundo3D.posicionPersonaje = 2;
+				destinoPortal= "ejercicioDado";
+				print(destinoPortal);
 
-				print("cargarPictogramas2");
-				animator_PanelCanvas.Play("pasarABlanco");
-				Invoke("cargarPictogramas2",100*Time.deltaTime);
 			}
-			else if(gameObject.name=="Trigger_Secuencias")
+			else if(coli.gameObject.name=="trigger_EjercicioSonidos")
 			{
-				print("cargarSecuencias");
-				animator_PanelCanvas.Play("pasarABlanco");
-				Invoke("cargarSecuencias",100*Time.deltaTime);
+				//CDG_Mundo3D.posicionPersonaje = 2;
+				destinoPortal= "ejercicioSonidos";
+				print(destinoPortal);
+
+				//animator_PanelCanvas.Play("pasarABlanco");
+				//Invoke("cargarPictogramas2",100*Time.deltaTime);
 			}
-			else if(gameObject.name=="Tube014")
+			else if(coli.gameObject.name=="trigger_IslaFantasma")
 			{
-				print("cargarEmociones1");
-				animator_PanelCanvas.Play("pasarABlanco");
-				Invoke("cargarEmociones1",100*Time.deltaTime);
-			}
-			else if(gameObject.name=="IslaFantasma")
-			{
-				if(Application.loadedLevelName=="03_1-Mundo3D_IslaDino")
-				{
-					CDG_Mundo3D.posicionPersonaje = 1;
-				}
-				else if(Application.loadedLevelName=="04_1-Mundo3D_IslaRobot")
-				{
-					CDG_Mundo3D.posicionPersonaje = 3;
-				}
-				print("cargarIslaFantasma");
-				animator_PanelCanvas.Play("pasarABlanco");
-				Invoke("cargarIslaFantasma",100*Time.deltaTime);
-			}
-			else if(gameObject.name=="IslaDino")
-			{
-				CDG_Mundo3D.posicionPersonaje = 3;
+				//CDG_Mundo3D.posicionPersonaje = 2;
+				destinoPortal= "islaFantasma";
+				print(destinoPortal);
 				
-				print("cargarIslaDino");
-				animator_PanelCanvas.Play("pasarABlanco");
-				Invoke("cargarIslaDino",100*Time.deltaTime);
+				//animator_PanelCanvas.Play("pasarABlanco");
+				//Invoke("cargarPictogramas2",100*Time.deltaTime);
 			}
-			else if(gameObject.name=="IslaRobot")
-			{
-				CDG_Mundo3D.posicionPersonaje = 1;
-				
-				print("cargarIslaRobot");
-				animator_PanelCanvas.Play("pasarABlanco");
-				Invoke("cargarIslaRobot",100*Time.deltaTime);
-			}
+
+
 		}
 	}
 
-	void cargarPictogramas1(){
-		Application.LoadLevel("03_2-Nivel1-PICTOGRAMAS");
-	}
-	void cargarPictogramas2(){
-		Application.LoadLevel("03_3-Nivel2-PICTOGRAMAS");
-	}
-	void cargarSecuencias(){
-		Application.LoadLevel("SECUENCIAS_menu_seleccion");
-	}
-	void cargarBonus(){
-		Application.LoadLevel("03_3-Nivel2-PICTOGRAMAS");
+	void OnTriggerExit(Collider coli)
+	{
+		if (coli.gameObject.tag == "Portal")
+		{
+			//Ejecutamos la animacion de salida canvas al salir del portal
+			animator_PanelCanvas.Play("CanvasPortal_animSalida");
+			animator_botonesPortal.Play("SalidaBotonesPortales");
+		}
 	}
 
-	void cargarIslaFantasma(){
-		Application.LoadLevel("05_1-Mundo3D_IslaFantasma");
+
+	public void usarPortal(){
+		switch (destinoPortal)
+		{
+		case "ejercicioDado":
+			Application.LoadLevel("Dado_SeleccionNivel");
+			break;
+		case "ejercicioSonidos":
+			Application.LoadLevel("Sonidos_menu_Seleccion");
+			print ("Cargando ejercicio sonidos...");
+			break;
+		case "islaFantasma":
+			Application.LoadLevel("Isla_fantasma");
+			print ("Cargando islaFantasma...");
+			break;
+
+		}
 	}
-	void cargarIslaDino(){
-		Application.LoadLevel("03_1-Mundo3D_IslaDino");
-	}
-	void cargarIslaRobot(){
-		Application.LoadLevel("04_1-Mundo3D_IslaRobot");
-	}
-	void cargarEmociones1(){
-		Application.LoadLevel("Escena1.1");
-	}
+
 }

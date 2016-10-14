@@ -21,7 +21,7 @@ public class Interface_Mundo : MonoBehaviour
 	public void PersonalizacionJuego()
 	{
 		cdgP = GameObject.Find ("datosGlobalesPersonalizacion").GetComponent<control_datosGlobalesPersonalizacion> ();
-		print ("hola");
+		//print ("hola");
 		cdgP.inicio = false;
 		Application.LoadLevel ("personalizacion2.0");
 	}
