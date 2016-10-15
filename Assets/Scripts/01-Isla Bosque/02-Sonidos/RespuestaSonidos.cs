@@ -34,7 +34,7 @@ public class RespuestaSonidos : MonoBehaviour
 	//public GameObject estrella2;
 	//public GameObject estrella3;
 
-	public GameObject MaquinaDiscos;
+	//public GameObject MaquinaDiscos;
 
 	// Use this for initialization
 	void Start () 
@@ -54,8 +54,8 @@ public class RespuestaSonidos : MonoBehaviour
 	{
 	if (respuesta == false) 
 		{
-			MaquinaDiscos.GetComponent<Animation> ().Play ("boton1");
-			GameObject.Find("IM_Botones").GetComponent<Animator> ().Play("AnimBoton1");
+			//MaquinaDiscos.GetComponent<Animation> ().Play ("boton1");
+			//GameObject.Find("IM_Botones").GetComponent<Animator> ().Play("AnimBoton1");
 			if (RS.SonidoAleatorio == 0) 
 			{
 				correcto ();
@@ -74,8 +74,8 @@ public class RespuestaSonidos : MonoBehaviour
 	{
 		if (respuesta == false) 
 		{
-			MaquinaDiscos.GetComponent<Animation> ().Play ("boton2");
-			GameObject.Find("IM_Botones").GetComponent<Animator> ().Play("AnimBoton2");
+			//MaquinaDiscos.GetComponent<Animation> ().Play ("boton2");
+			//GameObject.Find("IM_Botones").GetComponent<Animator> ().Play("AnimBoton2");
 			if (RS.SonidoAleatorio == 1) 
 			{
 				correcto ();
@@ -91,8 +91,8 @@ public class RespuestaSonidos : MonoBehaviour
 	{
 		if (respuesta == false) 
 		{
-			MaquinaDiscos.GetComponent<Animation> ().Play ("boton3");
-			GameObject.Find("IM_Botones").GetComponent<Animator> ().Play("AnimBoton3");
+			//MaquinaDiscos.GetComponent<Animation> ().Play ("boton3");
+			//GameObject.Find("IM_Botones").GetComponent<Animator> ().Play("AnimBoton3");
 			if (RS.SonidoAleatorio == 2) 
 			{
 				correcto ();
@@ -108,8 +108,8 @@ public class RespuestaSonidos : MonoBehaviour
 	{
 		if (respuesta == false) 
 		{
-			MaquinaDiscos.GetComponent<Animation> ().Play ("boton4");
-			GameObject.Find("IM_Botones").GetComponent<Animator> ().Play("AnimBoton4");
+		//	MaquinaDiscos.GetComponent<Animation> ().Play ("boton4");
+			//GameObject.Find("IM_Botones").GetComponent<Animator> ().Play("AnimBoton4");
 			if (RS.SonidoAleatorio == 3) 
 			{
 				correcto ();
@@ -126,7 +126,7 @@ public class RespuestaSonidos : MonoBehaviour
 	{
 		CS.aciertos++;
 		BotonPlay.SetActive (true);
-		BotonRepetir.SetActive (false);
+		//BotonRepetir.SetActive (false);
 		RS.StopSonido ();
 
 		actualizarPuntuacion ();
