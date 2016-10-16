@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class controlDesbloqueoIslas : MonoBehaviour 
+public class controlDesbloqueoIslasMapa : MonoBehaviour 
 {
 	ControlDatosGlobales_Mundo3D cdg_3d;
 	public GameObject[] Islas;
