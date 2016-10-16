@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ControlDesbloqueoSonidos : MonoBehaviour
 	{
 
-	ControlSonidos CS;
+	DatosDesbloqueo DD;
 	public Sprite[] imagenes_unlocked;
 	public Sprite[] imagenes_Locked;
 
@@ -16,16 +16,16 @@ public class ControlDesbloqueoSonidos : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		CS = GameObject.Find ("ctrSonidos").GetComponent<ControlSonidos> ();
+		DD = GameObject.Find ("ctrDesbloqueo").GetComponent<DatosDesbloqueo> ();
 		
-		for (i=0; i<CS.ASonidos.Length; i++) 
+		for (i=0; i<DD.ASonidos.Length; i++) 
 		{
-			if(CS.ASonidos[i]==true)
+			if(DD.ASonidos[i]==true)
 			{
 				Acontrol_Sonidos[i].GetComponent<Image>().sprite = imagenes_unlocked[i];
 				Acontrol_Sonidos[i].GetComponent<Button>().enabled=true;
 			}
-			else if(CS.ASonidos[i]==false)
+			else if(DD.ASonidos[i]==false)
 			{
 				Acontrol_Sonidos[i].GetComponent<Image>().sprite=imagenes_Locked[i];
 				Acontrol_Sonidos[i].GetComponent<Button>().enabled=false;

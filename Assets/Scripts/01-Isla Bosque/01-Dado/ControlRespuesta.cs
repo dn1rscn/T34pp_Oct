@@ -4,11 +4,16 @@ using UnityEngine.UI;
 
 public class ControlRespuesta : MonoBehaviour 
 {
+	ControlDatosGlobales_Mundo3D cdg_3d;
+	ControlMisiones CMisiones;
+
 	ControlDatosGlobales_PICTOGRAMAS cdg;
 	GameObject DGlobales;
 
 	Control_monedas cM;
 	GameObject ControlMonedas;
+
+	DatosDesbloqueo DD;
 	
 	GameObject puntuacion;
 	Text Tpuntuacion;
@@ -19,6 +24,7 @@ public class ControlRespuesta : MonoBehaviour
 	public GameObject[] vidas;
 
 	public GameObject IfinJuego;
+	public GameObject IfinJuego2;
 
 	public GameObject estrella1;
 	public GameObject estrella2;
@@ -35,6 +41,7 @@ public class ControlRespuesta : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		DD = GameObject.Find ("ctrDesbloqueo").GetComponent<DatosDesbloqueo> ();
 		DGlobales = GameObject.Find ("DatosGlobales");
 		cdg = DGlobales.GetComponent<ControlDatosGlobales_PICTOGRAMAS> ();
 		resetearDado ();
@@ -50,41 +57,40 @@ public class ControlRespuesta : MonoBehaviour
 
 	public void SeleccionRespuesta ()
 	{
+		DGlobales = GameObject.Find ("DatosGlobales");
+		cdg = DGlobales.GetComponent<ControlDatosGlobales_PICTOGRAMAS> ();
 
-		if(!cdg.resp){
+		if (!cdg.resp) {
 
 			//print (gameObject.name);
 			//print (cdg.correcto);
 			//FUNCION PARA DETECTAR LA RESPUESTA
-			if (gameObject.name == "Cartel1" && cdg.correcto == 1) 
-			{
+			if (gameObject.name == "Cartel1" && cdg.correcto == 1) {
 				cdg.resp = true;
-				correcto();
-			} 
-			else 
-			{
-				if (gameObject.name == "Cartel2" && cdg.correcto == 2) 
-				{
+				correcto ();
+			} else {
+				if (gameObject.name == "Cartel2" && cdg.correcto == 2) {
 					cdg.resp = true;
-					correcto();
-				} 
-				else 
-				{
+					correcto ();
+				} else {
 
-					if (gameObject.name == "Cartel3" && cdg.correcto == 3) 
-					{
+					if (gameObject.name == "Cartel3" && cdg.correcto == 3) {
 						cdg.resp = true;
-						correcto();
+						correcto ();
 					}
 
 					//FALLO DE REPUESTA
-					else 
-					{
-						error();
+					else {
+						error ();
 
 					}
 				}
 			}
+		} 
+		else 
+		{
+			print("tira otra vez el dado");
+			GameObject.Find("Dado").GetComponent<Animator>().Play ("Tirar_dado");
 		}
 	}
 
@@ -110,6 +116,46 @@ public class ControlRespuesta : MonoBehaviour
 			cdg.combos++;
 			cdg.aciertosSeguidos=0;
 		}
+		if (cdg.aciertos == 10 && DD.Nivel2Dado == false) 
+		{
+			if(DD.Posicion+1<DD.ADado.Length)
+			{
+				DD.ADado[DD.Posicion=DD.Posicion+1]=true;
+			}
+
+			DD.Nivel2Dado=true;
+
+			IfinJuego2.SetActive (true);
+			IfinJuego2.GetComponent<Animator>().Play ("AnimFinPartida");
+			
+			puntuacionfin = GameObject.Find ("puntuacionFin");
+			TpuntuacionFin = puntuacionfin.GetComponent<Text> ();
+			
+			monedasDado = GameObject.Find ("monedas");
+			TmonedasDado = monedasDado.GetComponent<Text> ();
+			
+			cM.calcular_monedasDado ();
+			cM.calcular_monedasGenerales ();
+			
+			if (cdg.aciertos >= 5) 
+			{
+				Invoke ("ActivarEstrella1", 1.0f);
+			}
+			if (cdg.aciertos >= 10) 
+			{
+				Invoke ("ActivarEstrella2", 2.0f);
+				
+			}
+			if (cdg.aciertos >= 15) 
+			{
+				Invoke ("ActivarEstrella3", 3.0f);
+			}
+			
+			
+			TpuntuacionFin.text = "NIVEL 2 DESBLOQUEADO"+"\n"+"\nACIERTOS: " + cdg.aciertos.ToString () + "\nCOMBOS: " + cdg.combos.ToString () + "\nLOGROS: ";
+			
+			TmonedasDado.text = cM.monedas_dado.ToString();
+		}
 	}
 	void error()
 	{
@@ -129,8 +175,13 @@ public class ControlRespuesta : MonoBehaviour
 		//ejecutarSonidoFallo
 		//GameObject.Find("SonidoFallo").GetComponent<AudioSource>().Play();
 
-		if (cdg.fallos == 5) 
+		if (cdg.fallos == 3) 
 		{
+			vidas [cdg.fallos-1].SetActive (false);
+
+			cdg_3d=GameObject.Find ("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D> ();
+			CMisiones=GameObject.Find ("Misiones").GetComponent<ControlMisiones>();
+
 			IfinJuego.SetActive (true);
 			IfinJuego.GetComponent<Animator>().Play ("AnimFinPartida");
 			
@@ -143,14 +194,33 @@ public class ControlRespuesta : MonoBehaviour
 			cM.calcular_monedasDado ();
 			cM.calcular_monedasGenerales ();
 
-			if (cdg.aciertos >= 5) {
+			if (cdg.aciertos >= 5) 
+			{
 				Invoke ("ActivarEstrella1", 1.0f);
+
+				if(cdg_3d.Ejer_Bosque[0]==false)
+				{
+					cdg_3d.Ejer_Bosque[0]=true;
+				}
 			}
-			if (cdg.aciertos >= 10) {
+			if (cdg.aciertos >= 10) 
+			{
 				Invoke ("ActivarEstrella2", 2.0f);
+			
 			}
-			if (cdg.aciertos >= 15) {
+			if (cdg.aciertos >= 15) 
+			{
 				Invoke ("ActivarEstrella3", 3.0f);
+				if(CMisiones.dado1==true&&CMisiones.ejerB_3estrellas[0]==false)
+				{
+					CMisiones.ejerB_3estrellas[0]=true;
+					CMisiones.Mision_Dino();
+				}
+				if(CMisiones.dado2==true&&CMisiones.ejerB_3estrellas[1]==false)
+				{
+					CMisiones.ejerB_3estrellas[1]=true;
+					CMisiones.Mision_Dino();
+				}
 			}
 
 			
@@ -204,5 +274,9 @@ public class ControlRespuesta : MonoBehaviour
 		cdg.aciertosSeguidos = 0;
 		cdg.combos = 0;
 		cM.monedas_dado = 0;
+	}
+	public void seguirJugando()
+	{
+		IfinJuego2.SetActive (false);
 	}
 }

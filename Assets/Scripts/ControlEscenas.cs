@@ -7,6 +7,8 @@ public class ControlEscenas : MonoBehaviour {
 	Animator animator_PanelCanvas;
 	ControlDatosGlobales_Mundo3D CDG_Mundo3D;
 
+	ControlMisiones CMisiones;
+
 	ControlSecuencias cs;
 	ControlEmociones CE;
 
@@ -142,10 +144,18 @@ public class ControlEscenas : MonoBehaviour {
 	{
 		Application.LoadLevel ("Dado_SeleccionNivel");
 	}
-	public void CargarPICTOGRAMAS_Nivel1(){
+	public void CargarPICTOGRAMAS_Nivel1()
+	{
+		CMisiones=GameObject.Find ("Misiones").GetComponent<ControlMisiones>();
+		CMisiones.dado1 = true;
+		CMisiones.dado2 = false;
 		Application.LoadLevel ("Nivel1_dado2.0");
 	}
-	public void CargarPICTOGRAMAS_Nivel2(){
+	public void CargarPICTOGRAMAS_Nivel2()
+	{
+		CMisiones=GameObject.Find ("Misiones").GetComponent<ControlMisiones>();
+		CMisiones.dado1 = false;
+		CMisiones.dado2 = true;
 		Application.LoadLevel ("Nivel2_dado2.0");
 	}
 

@@ -7,6 +7,7 @@ public class RespuestaSonidos : MonoBehaviour
 {
 	ControlSonidos CS;
 	reproducirSonido RS;
+	DatosDesbloqueo DD;
 
 	public GameObject[] vidas;
 
@@ -39,6 +40,7 @@ public class RespuestaSonidos : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		DD = GameObject.Find ("ctrDesbloqueo").GetComponent<DatosDesbloqueo> ();
 		CS = GameObject.Find ("ctrSonidos").GetComponent<ControlSonidos> ();
 		RS = GameObject.Find ("reproducir sonido").GetComponent<reproducirSonido> ();
 		actualizarPuntuacion ();
@@ -159,9 +161,9 @@ public class RespuestaSonidos : MonoBehaviour
 				Invoke ("ActivarEstrella1", 1.0f);
 				//desbloquear su¡iguiente nivel
 				BotonSiguienteNivel.SetActive(true);
-				if(CS.posicion+1<CS.ASonidos.Length)
+				if(CS.posicion+1<DD.ASonidos.Length)
 				{
-					CS.ASonidos[CS.posicion=CS.posicion+1]=true;
+					DD.ASonidos[CS.posicion=CS.posicion+1]=true;
 				}
 			}
 			if (CS.aciertos >= 10) {

@@ -1,24 +1,25 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-public class ControlSonidos : MonoBehaviour 
+public class DatosDesbloqueo : MonoBehaviour 
 {
-	public static ControlSonidos cont;
+	public static DatosDesbloqueo cont;
 
-	//public int nivel=0;
-	public int fallos=0;
-	public int aciertos=0;
-	public int posicion;
+	public int Posicion;
+
+	public bool Nivel2Dado=false;
+
+	public bool[] ADado;
+	public bool[] ASonidos;
+
 	// Use this for initialization
 	void Start () 
 	{
 		DontDestroyOnLoad (this);
-	
 	}
 	
 	// Update is called once per frame
-	void Update () 
-	{
+	void Update () {
 	
 	}
 	void Awake ()
