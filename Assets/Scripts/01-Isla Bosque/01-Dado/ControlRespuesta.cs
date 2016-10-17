@@ -140,6 +140,10 @@ public class ControlRespuesta : MonoBehaviour
 			if (cdg.aciertos >= 5) 
 			{
 				Invoke ("ActivarEstrella1", 1.0f);
+				if(cdg_3d.Ejer_Bosque[0]==false)
+				{
+					cdg_3d.Ejer_Bosque[0]=true;
+				}
 			}
 			if (cdg.aciertos >= 10) 
 			{

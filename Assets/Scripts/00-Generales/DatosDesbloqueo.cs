@@ -9,6 +9,9 @@ public class DatosDesbloqueo : MonoBehaviour
 
 	public bool Nivel2Dado=false;
 
+	public bool Nivel2Sonidos=false;
+	public bool Nivel3Sonidos=false;
+
 	public bool[] ADado;
 	public bool[] ASonidos;
 

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class RespuestaSonidos : MonoBehaviour 
 {
+	ControlDatosGlobales_Mundo3D cdg_3d;
+	ControlMisiones CMisiones;
+
 	ControlSonidos CS;
 	reproducirSonido RS;
 	DatosDesbloqueo DD;
@@ -12,6 +15,7 @@ public class RespuestaSonidos : MonoBehaviour
 	public GameObject[] vidas;
 
 	public GameObject IfinJuego;
+	public GameObject IfinJuego2;
 
 	Control_monedas cM;
 	GameObject ControlMonedas;
@@ -133,13 +137,149 @@ public class RespuestaSonidos : MonoBehaviour
 
 		actualizarPuntuacion ();
 
+		if(CS.aciertos==10)
+		{
+
+			if(CS.nivel==1&&DD.Nivel2Sonidos==false)
+			{
+				cdg_3d=GameObject.Find ("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D> ();
+				CMisiones=GameObject.Find ("Misiones").GetComponent<ControlMisiones>();
+				
+				IfinJuego2.SetActive (true);
+				IfinJuego2.GetComponent<Animator>().Play ("AnimFinPartida");
+				
+				RS.StopSonido();
+				
+				puntuacionfin = GameObject.Find ("puntuacionFin");
+				TpuntuacionFin = puntuacionfin.GetComponent<Text> ();
+				
+				monedasSonidos = GameObject.Find ("monedas");
+				TmonedasSonidos = monedasSonidos.GetComponent<Text> ();
+				
+				cM=GameObject.Find("controlMonedas").GetComponent<Control_monedas>();
+				
+				cM.calcular_monedasSonidos ();
+				cM.calcular_monedasGenerales ();
+				
+				if (CS.aciertos >= 5) 
+				{
+					Invoke ("ActivarEstrella1", 1.0f);
+					//desbloquear su¡iguiente nivel
+					BotonSiguienteNivel.SetActive(true);
+					if(CS.nivel<DD.ASonidos.Length)
+					{
+						DD.ASonidos[CS.nivel]=true;
+					}
+					cdg_3d.IslaFantasma_Desbloqueada=true;
+				}
+				if (CS.aciertos >= 10) {
+					Invoke ("ActivarEstrella2", 2.0f);
+				}
+				if (CS.aciertos >= 15) {
+					Invoke ("ActivarEstrella3", 3.0f);
+					if(CS.nivel == 1 &&CMisiones.ejerB_3estrellas[2]==false)
+					{
+						CMisiones.ejerB_3estrellas[2]=true;
+						CMisiones.Mision_Dino();
+					}
+					if(CS.nivel==2&&CMisiones.ejerB_3estrellas[3]==false)
+					{
+						CMisiones.ejerB_3estrellas[3]=true;
+						CMisiones.Mision_Dino();
+					}
+					if(CS.nivel==2&&CMisiones.ejerB_3estrellas[4]==false)
+					{
+						CMisiones.ejerB_3estrellas[4]=true;
+						CMisiones.Mision_Dino();
+					}
+				}
+				
+				
+				TpuntuacionFin.text ="NIVEL "+ (CS.nivel+1)+ " DESBLOQUEADO" + "\n" + "\nACIERTOS: " + CS.aciertos.ToString ();
+				
+				TmonedasSonidos.text = cM.MonedasSonidos.ToString();
+				
+				cdg_3d.IslaFantasma_Desbloqueada=true;
+				DD.ASonidos[CS.nivel]=true;
+
+			}
+			if(CS.nivel==2&&DD.Nivel3Sonidos==false)
+			{
+				cdg_3d=GameObject.Find ("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D> ();
+				CMisiones=GameObject.Find ("Misiones").GetComponent<ControlMisiones>();
+				
+				IfinJuego2.SetActive (true);
+				IfinJuego2.GetComponent<Animator>().Play ("AnimFinPartida");
+				
+				RS.StopSonido();
+				
+				puntuacionfin = GameObject.Find ("puntuacionFin");
+				TpuntuacionFin = puntuacionfin.GetComponent<Text> ();
+				
+				monedasSonidos = GameObject.Find ("monedas");
+				TmonedasSonidos = monedasSonidos.GetComponent<Text> ();
+				
+				cM=GameObject.Find("controlMonedas").GetComponent<Control_monedas>();
+				
+				cM.calcular_monedasSonidos ();
+				cM.calcular_monedasGenerales ();
+				
+				if (CS.aciertos >= 5) 
+				{
+					Invoke ("ActivarEstrella1", 1.0f);
+					//desbloquear su¡iguiente nivel
+					BotonSiguienteNivel.SetActive(true);
+					if(CS.nivel<DD.ASonidos.Length)
+					{
+						DD.ASonidos[CS.nivel]=true;
+					}
+					cdg_3d.IslaFantasma_Desbloqueada=true;
+				}
+				if (CS.aciertos >= 10) {
+					Invoke ("ActivarEstrella2", 2.0f);
+				}
+				if (CS.aciertos >= 15) {
+					Invoke ("ActivarEstrella3", 3.0f);
+					if(CS.nivel == 1 &&CMisiones.ejerB_3estrellas[2]==false)
+					{
+						CMisiones.ejerB_3estrellas[2]=true;
+						CMisiones.Mision_Dino();
+					}
+					if(CS.nivel==2&&CMisiones.ejerB_3estrellas[3]==false)
+					{
+						CMisiones.ejerB_3estrellas[3]=true;
+						CMisiones.Mision_Dino();
+					}
+					if(CS.nivel==2&&CMisiones.ejerB_3estrellas[4]==false)
+					{
+						CMisiones.ejerB_3estrellas[4]=true;
+						CMisiones.Mision_Dino();
+					}
+				}
+				
+				
+				TpuntuacionFin.text = "\nACIERTOS: " + CS.aciertos.ToString ();
+				
+				TmonedasSonidos.text = cM.MonedasSonidos.ToString();
+
+				cdg_3d.IslaFantasma_Desbloqueada=true;
+				DD.ASonidos[CS.nivel]=true;
+
+			}
+		}
+
 		print ("correcto");
 	}
 	void incorrecto()
 	{
 		CS.fallos++;
-		if(CS.fallos==5)
+		if(CS.fallos==3)
 		{
+			vidas [CS.fallos-1].SetActive (false);
+
+			cdg_3d=GameObject.Find ("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D> ();
+			CMisiones=GameObject.Find ("Misiones").GetComponent<ControlMisiones>();
+
 			IfinJuego.SetActive (true);
 			IfinJuego.GetComponent<Animator>().Play ("AnimFinPartida");
 
@@ -161,16 +301,32 @@ public class RespuestaSonidos : MonoBehaviour
 				Invoke ("ActivarEstrella1", 1.0f);
 				//desbloquear su¡iguiente nivel
 				BotonSiguienteNivel.SetActive(true);
-				if(CS.posicion+1<DD.ASonidos.Length)
+				if(CS.nivel<DD.ASonidos.Length)
 				{
-					DD.ASonidos[CS.posicion=CS.posicion+1]=true;
+					DD.ASonidos[CS.nivel]=true;
 				}
+				cdg_3d.IslaFantasma_Desbloqueada=true;
 			}
 			if (CS.aciertos >= 10) {
 				Invoke ("ActivarEstrella2", 2.0f);
 			}
 			if (CS.aciertos >= 15) {
 				Invoke ("ActivarEstrella3", 3.0f);
+				if(CS.nivel == 1 &&CMisiones.ejerB_3estrellas[2]==false)
+				{
+					CMisiones.ejerB_3estrellas[2]=true;
+					CMisiones.Mision_Dino();
+				}
+				if(CS.nivel==2&&CMisiones.ejerB_3estrellas[3]==false)
+				{
+					CMisiones.ejerB_3estrellas[3]=true;
+					CMisiones.Mision_Dino();
+				}
+				if(CS.nivel==2&&CMisiones.ejerB_3estrellas[4]==false)
+				{
+					CMisiones.ejerB_3estrellas[4]=true;
+					CMisiones.Mision_Dino();
+				}
 			}
 			
 			
@@ -212,5 +368,9 @@ public class RespuestaSonidos : MonoBehaviour
 	{
 		//yield return new WaitForSeconds (2.0f);
 		GameObject.Find ("estrellas").GetComponent<Animator> ().Play ("AnimEstrella3");
+	}
+	public void seguirJugando()
+	{
+		IfinJuego2.SetActive (false);
 	}
 }

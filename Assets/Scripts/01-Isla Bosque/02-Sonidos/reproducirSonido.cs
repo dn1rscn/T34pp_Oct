@@ -22,6 +22,7 @@ public class reproducirSonido : MonoBehaviour
 
 	
 	public int SonidoAleatorio;
+	int sonidoOK;
 	
 	// Use this for initialization
 	void Start () 
@@ -38,11 +39,16 @@ public class reproducirSonido : MonoBehaviour
 
 	public void Repetir()
 	{
-		//MaquinaDiscos.GetComponent<Animation> ().Play ("replay");
-		//MaquinaDiscos.GetComponent<Animation> ().Play ("disco");
+		if (RS.respuesta == true) 
+		{
+			//animacion boton play
+			GameObject.Find("Isla_Bosque_Boton_Play").GetComponent<Animator>().Play ("anim_Play");
+		} 
+		else 
+		{
+			ASonidos [SonidoAleatorio].Play ();
+		}
 
-		//AnimReplay.Play ("replay");
-		ASonidos [SonidoAleatorio].Play ();
 	}
 	
 	public void StopSonido()
@@ -65,8 +71,13 @@ public class reproducirSonido : MonoBehaviour
 			//MaquinaDiscos.GetComponent<Animation> ().Play ("play");
 			//MaquinaDiscos.GetComponent<Animation> ().Play ("disco");
 
-			SonidoAleatorio = Random.Range (0, 4);
-			ASonidos [SonidoAleatorio].Play ();
+
+			while(SonidoAleatorio==sonidoOK)
+			{
+				SonidoAleatorio = Random.Range (0, 4);
+			}
+			sonidoOK = SonidoAleatorio;
+			ASonidos [sonidoOK].Play ();
 			//BotonPlay.SetActive (false);
 			//BotonRepetir.SetActive (true);
 		} else if (RS.respuesta == false) 
