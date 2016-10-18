@@ -14,7 +14,7 @@ public class controlPortales : MonoBehaviour {
 	void Start ()
 	{
 		//ACCEDEMOS AL SCRIPT DE DATOS GLOBALES
-		//CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
+		CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
 
 		animator_PanelCanvas = GameObject.Find ("CanvasPortal_Verde").GetComponent<Animator> ();
 		animator_botonesPortal = GameObject.Find("botonesPortal").GetComponent<Animator>();
@@ -145,6 +145,10 @@ public class controlPortales : MonoBehaviour {
 		case "islaFantasma":
 			Application.LoadLevel("Isla_fantasma");
 			print ("Cargando islaFantasma...");
+			CDG_Mundo3D.islaBosque = false;
+			CDG_Mundo3D.islaMec = false;
+			CDG_Mundo3D.islaFant = true;
+
 			break;
 
 		//ISLA FANTASMA
@@ -159,6 +163,9 @@ public class controlPortales : MonoBehaviour {
 		case "islaMecanica":
 			Application.LoadLevel("Isla_Mecanica_v3");
 			print ("Cargando islaMecanica...");
+			CDG_Mundo3D.islaBosque = false;
+			CDG_Mundo3D.islaMec = true;
+			CDG_Mundo3D.islaFant = false;
 			break;
 
 		//ISLA MECANICA
@@ -173,6 +180,9 @@ public class controlPortales : MonoBehaviour {
 		case "altarFinal":
 			Application.LoadLevel("Isla_bosque");
 			print ("Cargando altarFINAL...");
+			CDG_Mundo3D.islaBosque = true;
+			CDG_Mundo3D.islaMec = false;
+			CDG_Mundo3D.islaFant = false;
 			break;
 
 

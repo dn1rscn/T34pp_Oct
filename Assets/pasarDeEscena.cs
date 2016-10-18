@@ -16,6 +16,11 @@ public class pasarDeEscena : MonoBehaviour {
 	
 	}
 
+	public void reproducirAudio (){
+		GameObject.Find ("audioIntroIkki_1").GetComponent<AudioSource>().Play();
+	}
+
+
 	public void siguienteEscena (){
 
 		if(escenaSiguiente==""){

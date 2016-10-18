@@ -124,11 +124,11 @@ public class ControlInterface : MonoBehaviour
 		if (CDG_Mundo3D.islaBosque == true) {
 			Application.LoadLevel ("Isla_bosque");
 		}
-		if (CDG_Mundo3D.islaMec == true) {
-			Application.LoadLevel ("04_1-Mundo3D_IslaRobot");
+		else if (CDG_Mundo3D.islaMec == true) {
+			Application.LoadLevel ("Isla_Mecanica_v3");
 		}
-		if (CDG_Mundo3D.islaFant == true) {
-			Application.LoadLevel ("05_1-Mundo3D_IslaFantasma");
+		else if (CDG_Mundo3D.islaFant == true) {
+			Application.LoadLevel ("Isla_fantasma");
 		}
 	}
 	public void RA_personalizacion()
