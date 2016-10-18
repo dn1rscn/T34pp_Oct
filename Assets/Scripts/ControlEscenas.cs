@@ -11,6 +11,8 @@ public class ControlEscenas : MonoBehaviour {
 
 	ControlSecuencias cs;
 	ControlEmociones CE;
+	ControlSonidos CS;
+
 
 
 	// Use this for initialization
@@ -216,14 +218,21 @@ public class ControlEscenas : MonoBehaviour {
 	}
 	public void CargarSonidosNivel1()
 	{
+		CS = GameObject.Find ("ctrSonidos").GetComponent<ControlSonidos> ();
+		CS.nivel = 1;
 		Application.LoadLevel ("SonidosNivel1");
 	}
 	public void CargarSonidosNivel2()
 	{
+		CS = GameObject.Find ("ctrSonidos").GetComponent<ControlSonidos> ();
+		CS.nivel = 2;
+
 		Application.LoadLevel ("SonidosNivel2");
 	}
 	public void CargarSonidosNivel3()
 	{
+		CS = GameObject.Find ("ctrSonidos").GetComponent<ControlSonidos> ();
+		CS.nivel = 3;
 		Application.LoadLevel ("SonidosNivel3");
 	}
 	public void CargarSocial()

@@ -17,9 +17,7 @@ public class controlPortales : MonoBehaviour {
 		//CDG_Mundo3D = GameObject.Find("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D>();
 
 		animator_PanelCanvas = GameObject.Find ("CanvasPortal_Verde").GetComponent<Animator> ();
-		print (" animator panelCanvas detectado");
 		animator_botonesPortal = GameObject.Find("botonesPortal").GetComponent<Animator>();
-		print (" animator botonesPortal detectado");
 	}
 	
 	void OnTriggerEnter(Collider coli)
@@ -151,7 +149,7 @@ public class controlPortales : MonoBehaviour {
 
 		//ISLA FANTASMA
 		case "ejercicioSecuencias":
-			//Application.LoadLevel("Dado_SeleccionNivel");
+			Application.LoadLevel("SECUENCIAS_menu_seleccion");
 			print ("Cargando ejercicio secuencias...");
 			break;
 		case "ejercicioCanasta":
@@ -159,21 +157,21 @@ public class controlPortales : MonoBehaviour {
 			print ("Cargando ejercicio canasta...");
 			break;
 		case "islaMecanica":
-			//Application.LoadLevel("Isla_fantasma");
+			Application.LoadLevel("Isla_Mecanica_v3");
 			print ("Cargando islaMecanica...");
 			break;
 
 		//ISLA MECANICA
 		case "ejercicioEmocionesSocial":
-			//Application.LoadLevel("Dado_SeleccionNivel");
+			Application.LoadLevel("1-Social_SelecNivel");
 			print ("Cargando ejercicio emociones social...");
 			break;
 		case "ejercicioEmociones":
-			//Application.LoadLevel("Sonidos_menu_Seleccion");
+			Application.LoadLevel("2-Emociones_SelecNivel");
 			print ("Cargando ejercicio emociones...");
 			break;
 		case "altarFinal":
-			//Application.LoadLevel("Isla_fantasma");
+			Application.LoadLevel("Isla_bosque");
 			print ("Cargando altarFINAL...");
 			break;
 

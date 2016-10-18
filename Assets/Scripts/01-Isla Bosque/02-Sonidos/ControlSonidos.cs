@@ -5,7 +5,7 @@ public class ControlSonidos : MonoBehaviour
 {
 	public static ControlSonidos cont;
 
-	//public int nivel=0;
+	public int nivel=0;
 	public int fallos=0;
 	public int aciertos=0;
 	public int posicion;
