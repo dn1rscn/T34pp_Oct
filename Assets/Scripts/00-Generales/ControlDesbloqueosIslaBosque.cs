@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ControlDesbloqueosIslaBosque : MonoBehaviour 
+public class ControlDesbloqueoIslaFantasma : MonoBehaviour 
 {
 	int i;
 
 	ControlDatosGlobales_Mundo3D cdg_3d;
+	ControlMisiones CMisiones;
+
 	// Use this for initialization
 	void Start () 
 	{
 		cdg_3d=GameObject.Find ("ControlDatosGlobales").GetComponent<ControlDatosGlobales_Mundo3D> ();
+		CMisiones=GameObject.Find ("Misiones").GetComponent<ControlMisiones>();
 
+
+		//DESBLOQUEO ISLA FANTASMA
 		i = 0;
 
 		while (i<=cdg_3d.Ejer_Bosque.Length-1&&cdg_3d.Ejer_Bosque[i]==true )

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ControlMisiones : MonoBehaviour 
@@ -15,6 +15,10 @@ public class ControlMisiones : MonoBehaviour
 	public bool[] ejerB_3estrellas;
 	public bool[] ejerF_3estrellas;
 	public bool[] ejerM_3estrellas;
+
+	public bool misionDinoCompletada;
+	public bool misionFantasmaCompletada;
+	public bool misionRobotCompletada;
 
 	int i;
 
@@ -39,8 +43,9 @@ public class ControlMisiones : MonoBehaviour
 		{
 			if(i==ejerB_3estrellas.Length-1)
 			{
-				//desbloqueamos isla
+				//mision completada
 				print("Mision completada");
+				misionDinoCompletada=true;
 			}
 			
 			i++;
