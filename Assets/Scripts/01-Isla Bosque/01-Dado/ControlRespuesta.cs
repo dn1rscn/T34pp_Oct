@@ -21,6 +21,8 @@ public class ControlRespuesta : MonoBehaviour
 	GameObject monedasDado;
 	Text TmonedasDado;
 
+	ControlSlider CSlider;
+
 	public GameObject[] vidas;
 
 	public GameObject IfinJuego;
@@ -96,11 +98,13 @@ public class ControlRespuesta : MonoBehaviour
 
 	void correcto()
 	{
+		CSlider = GameObject.Find ("Progreso").GetComponent<ControlSlider> ();
 
 		print ("correcto");
 
 		cdg.aciertos++;
 		cdg.aciertosSeguidos++;
+		CSlider.ProgresoDado ();
 
 		//ejecutarSonidoAcierto
 		//GameObject.Find("SonidoAcierto").GetComponent<AudioSource>().Play();

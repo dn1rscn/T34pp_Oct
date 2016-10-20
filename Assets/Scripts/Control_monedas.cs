@@ -67,7 +67,7 @@ public class Control_monedas : MonoBehaviour
 		cdg = DGlobales.GetComponent<ControlDatosGlobales_PICTOGRAMAS> ();
 
 		monedas_combos = cdg.combos * 20;
-		monedas_aciertos = cdg.aciertos * 3;
+		monedas_aciertos = cdg.aciertos * 5;
 		monedas_dado = monedas_combos + monedas_aciertos;
 	}
 
@@ -99,7 +99,7 @@ public class Control_monedas : MonoBehaviour
 	{
 		cec = GameObject.Find ("gameFlow").GetComponent<controlEjercicioCanastas> ();
 
-		monedas_canastas = cec.puntuacionJugador * 3;
+		monedas_canastas = cec.puntuacionJugador * 5;
 		MonedasGenerales_canasta = monedas_canastas + 20;
 
 	}
@@ -108,7 +108,7 @@ public class Control_monedas : MonoBehaviour
 
 		CS = GameObject.Find ("ctrSonidos").GetComponent<ControlSonidos> ();
 
-		monedasAciertos_Sonidos = CS.aciertos * 3;
+		monedasAciertos_Sonidos = CS.aciertos * 5;
 		MonedasSonidos = monedasAciertos_Sonidos;
 	}
 	public void calcular_monedaSocialNivel1()
