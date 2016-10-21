@@ -7,6 +7,8 @@ public class ControlRespuestaSocialNivel1 : MonoBehaviour
 	controlRespAleatoria CRA;
 
 	ControlEmociones CE;
+	ControlSlider CSlider;
+	DatosDesbloqueo DD;
 
 	public GameObject IfinJuego;
 	
@@ -29,8 +31,12 @@ public class ControlRespuestaSocialNivel1 : MonoBehaviour
 	void Start () 
 	{
 		CE = GameObject.Find ("ctrEmociones").GetComponent<ControlEmociones> ();
+		CSlider = GameObject.Find ("Progreso").GetComponent<ControlSlider> ();
+
 		CE.respuesta = false;
 		actualizarPuntuacion ();
+		CSlider.progresoEmocionesSNivel1 ();
+
 
 	}
 	
@@ -72,6 +78,7 @@ public class ControlRespuestaSocialNivel1 : MonoBehaviour
 	void correcto()
 	{
 		CE = GameObject.Find ("ctrEmociones").GetComponent<ControlEmociones> ();
+		DD = GameObject.Find ("ctrDesbloqueo").GetComponent<DatosDesbloqueo> ();
 
 		GameObject.Find("Panel_Canvas").GetComponent<Animator>().Play("acierto");
 
@@ -100,6 +107,7 @@ public class ControlRespuestaSocialNivel1 : MonoBehaviour
 			{
 				CE.ASocialNivel1[CE.EjercicioSocial]=true;
 			}
+			DD.AEmpatia[1] = true;
 		} 
 		else 
 		{
@@ -113,8 +121,9 @@ public class ControlRespuestaSocialNivel1 : MonoBehaviour
 				{
 					CE.ASocialNivel1[CE.EjercicioSocial]=true;
 				}
+				DD.AEmpatia[1] = true;
 			} 
-			else 
+			else if (CE.Intentos == 3)
 			{
 				Invoke ("ActivarEstrella1", 1.0f);
 
@@ -123,6 +132,7 @@ public class ControlRespuestaSocialNivel1 : MonoBehaviour
 				{
 					CE.ASocialNivel1[CE.EjercicioSocial]=true;
 				}
+				DD.AEmpatia[1] = true;
 			}
 		}
 
@@ -145,6 +155,7 @@ public class ControlRespuestaSocialNivel1 : MonoBehaviour
 
 		CE.Intentos++;
 		actualizarPuntuacion ();
+		CSlider.progresoEmocionesSNivel1 ();
 	}
 	void actualizarPuntuacion()
 	{

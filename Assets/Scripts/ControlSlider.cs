@@ -13,6 +13,7 @@ public class ControlSlider : MonoBehaviour
 	ControlDatosGlobales_PICTOGRAMAS cdg;
 	ControlSonidos CS;
 	ControlSecuencias cs;
+	ControlEmociones CE;
 
 	// Use this for initialization
 	void Start () 
@@ -94,6 +95,29 @@ public class ControlSlider : MonoBehaviour
 			estrellas[2].GetComponent<Image>().sprite=NOstrella;
 		}
 		if (BarraProgreso.value == 0) //5 intentos
+		{
+			estrellas[0].GetComponent<Image>().sprite=NOstrella;
+		}
+	}
+	public void progresoEmocionesSNivel1()
+	{
+		CE = GameObject.Find ("ctrEmociones").GetComponent<ControlEmociones> ();
+
+		BarraProgreso.value = 4 -(CE.Intentos);
+
+		if (BarraProgreso.value == 2) //2 intentos
+		{
+			estrellas[3].GetComponent<Image>().sprite=NOstrella;
+			estrellas[4].GetComponent<Image>().sprite=NOstrella;
+			estrellas[5].GetComponent<Image>().sprite=NOstrella;
+		}
+
+		if (BarraProgreso.value == 1) //3 intentos
+		{
+			estrellas[1].GetComponent<Image>().sprite=NOstrella;
+			estrellas[2].GetComponent<Image>().sprite=NOstrella;
+		}
+		if (BarraProgreso.value == 0) //+ de 3 intentos
 		{
 			estrellas[0].GetComponent<Image>().sprite=NOstrella;
 		}

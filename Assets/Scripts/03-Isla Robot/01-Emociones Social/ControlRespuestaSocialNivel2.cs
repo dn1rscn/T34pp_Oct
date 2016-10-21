@@ -7,6 +7,7 @@ public class ControlRespuestaSocialNivel2 : MonoBehaviour
 	ControlAleatorioSocialNivel2 CAN2;
 
 	ControlEmociones CE;
+	DatosDesbloqueo DD;
 	
 	public GameObject IfinJuego;
 	
@@ -78,6 +79,7 @@ public class ControlRespuestaSocialNivel2 : MonoBehaviour
 	void correcto()
 	{
 		CE = GameObject.Find ("ctrEmociones").GetComponent<ControlEmociones> ();
+		DD = GameObject.Find ("ctrDesbloqueo").GetComponent<DatosDesbloqueo> ();
 
 		GameObject.Find("Panel_Canvas").GetComponent<Animator>().Play("acierto");
 		
@@ -101,6 +103,7 @@ public class ControlRespuestaSocialNivel2 : MonoBehaviour
 			Invoke ("ActivarEstrella1", 1.0f);
 			Invoke ("ActivarEstrella2", 2.0f);
 			Invoke ("ActivarEstrella3", 3.0f);
+			DD.AEmpatia[2] = true;
 		} 
 		else 
 		{
@@ -108,10 +111,12 @@ public class ControlRespuestaSocialNivel2 : MonoBehaviour
 			{
 				Invoke ("ActivarEstrella1", 1.0f);
 				Invoke ("ActivarEstrella2", 2.0f);
+				DD.AEmpatia[2] = true;
 			} 
-			else 
+			else if(CE.Intentos == 3)
 			{
 				Invoke ("ActivarEstrella1", 1.0f);
+				DD.AEmpatia[2] = true;
 			}
 		}
 		

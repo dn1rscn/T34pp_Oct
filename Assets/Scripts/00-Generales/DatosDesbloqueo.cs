@@ -14,10 +14,14 @@ public class DatosDesbloqueo : MonoBehaviour
 
 	public bool[] ADado;
 	public bool[] ASonidos;
+	public bool[] AEmpatia;
 
 	// Use this for initialization
 	void Start () 
 	{
+		ADado [0] = true;
+		ASonidos [0] = true;
+		AEmpatia [0] = true;
 		DontDestroyOnLoad (this);
 	}
 	
