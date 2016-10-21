@@ -51,7 +51,7 @@ public class FinPartida_Secuencias : MonoBehaviour
 		cM.calcular_monedasSecuencia ();
 		cM.calcular_monedasGenerales ();
 		
-		if (cs.intentos == 3) 
+		if (cs.intentos == 4 ) 
 		{
 			Invoke ("ActivarEstrella1", 1.0f);
 			//ActivarEstrella1();
@@ -61,7 +61,7 @@ public class FinPartida_Secuencias : MonoBehaviour
 				cs.Asecuencias[cs.Secuencia]=true;
 			}
 		}
-		if (cs.intentos == 2) 
+		if (cs.intentos == 3 || cs.intentos == 2) 
 		{
 			Invoke ("ActivarEstrella1", 1.0f);
 			Invoke ("ActivarEstrella2", 2.0f);

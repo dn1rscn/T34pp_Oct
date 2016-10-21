@@ -11,6 +11,7 @@ public class RespuestaSonidos : MonoBehaviour
 	ControlSonidos CS;
 	reproducirSonido RS;
 	DatosDesbloqueo DD;
+	ControlSlider CSlider;
 
 	public GameObject[] vidas;
 
@@ -130,10 +131,13 @@ public class RespuestaSonidos : MonoBehaviour
 
 	void correcto()
 	{
+		CSlider = GameObject.Find ("Progreso").GetComponent<ControlSlider> ();
+
 		CS.aciertos++;
 		BotonPlay.SetActive (true);
 		//BotonRepetir.SetActive (false);
 		RS.StopSonido ();
+		CSlider.progresoSonidos ();
 
 		actualizarPuntuacion ();
 

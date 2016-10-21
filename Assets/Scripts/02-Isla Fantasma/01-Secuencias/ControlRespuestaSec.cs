@@ -14,6 +14,7 @@ public class ControlRespuestaSec : MonoBehaviour
 	GameObject ctrlsecuencias;
 	ControlSecuencias cs;
 	controlSituaciones CSit;
+	ControlSlider CSlider;
 
 	FinPartida_Secuencias Fin_Sec;
 	
@@ -25,8 +26,10 @@ public class ControlRespuestaSec : MonoBehaviour
 	{
 		ctrlsecuencias = GameObject.Find ("DatosGlobalesSecuencias");
 		cs = ctrlsecuencias.GetComponent<ControlSecuencias> ();
+		CSlider = GameObject.Find ("Progreso").GetComponent<ControlSlider> ();
 
 		actualizarPuntuacion ();
+		CSlider.progresoSecuencias ();
 
 	}
 	
@@ -84,6 +87,7 @@ public class ControlRespuestaSec : MonoBehaviour
 
 			cs.intentos++;
 			actualizarPuntuacion();
+			CSlider.progresoSecuencias ();
 
 			//ejecutar animacionError
 			GameObject.Find("Panel_Canvas").GetComponent<Animator>().Play("Fallo");
