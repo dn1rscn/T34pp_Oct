@@ -174,7 +174,6 @@ public class controlEjercicioCanastas : MonoBehaviour {
 			print (marcador);
 
 		}
-		num_turnoJugador++;
 	}
 
 //***********************************************************************************
@@ -235,6 +234,8 @@ public class controlEjercicioCanastas : MonoBehaviour {
 		GameObject pngIntentoActual= GameObject.Find("png_jugador_intento_"+num_turnoJugador);
 		Destroy(pngIntentoActual);
 		actualizarMarcadorGlobal();
+		//num_turnoJugador++;
+
 
 	}
 
